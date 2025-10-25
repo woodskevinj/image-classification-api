@@ -25,6 +25,8 @@ We'll fine-tune the model on a small dataset, expose a `/predict` endpoint that 
 
 ## 📂 Folder Structure
 
+```
+
 image-classification-api/
 ├── data/
 ├── notebooks/
@@ -34,6 +36,7 @@ image-classification-api/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+```
 
 ---
 
