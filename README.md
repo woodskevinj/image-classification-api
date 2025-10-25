@@ -78,11 +78,12 @@ This project emphasizes:
 
 ## 📅 Next Steps
 
-- Implement model training with a pretrained CNN
-
-- Add FastAPI prediction endpoint
-
-- Dockerize and deploy to ECS
+- [ ] Data Cleaning + EDA
+- [ ] Implement model training with a pretrained CNN
+- [ ] Add FastAPI prediction endpoint
+- [ ] Docker Containerization
+- [ ] AWS ECR Upload + Cleanup
+- [ ] AWS ECS (Deployment)
 
 Author: Kevin Woods, Applied ML Engineer
 
