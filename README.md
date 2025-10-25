@@ -34,3 +34,56 @@ image-classification-api/
 ├── requirements.txt
 ├── .gitignore
 └── README.md
+
+---
+
+## 🚀 Getting Started
+
+1. **Clone the repo:**
+
+   ```bash
+   git clone https://github.com/your-username/image-classification-api.git
+   cd image-classification-api
+
+   ```
+
+2. **Install dependencies:**
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. **Run the API:**
+
+   ```bash
+   uvicorn api.main:app --reload
+   ```
+
+4. **Test Prediction Endpoint:**
+   Use `curl` or Postman to send a POST request to `http://127.0.0.1:8000/predict` with an image file.
+   Or curl -X POST -F "file=@test.jpg" http://127.0.0.1:8000/predict
+
+# 🧠 Learning Focus
+
+This project emphasizes:
+
+Convolutional Neural Networks (CNNs) for visual pattern extraction
+
+Transfer Learning for faster convergence and reduced data needs
+
+Model Serving to deploy ML systems as APIs
+
+# 📅 Next Steps
+
+Implement model training with a pretrained CNN
+
+Add FastAPI prediction endpoint
+
+Dockerize and deploy to ECS
+
+Author: Kevin Woods
+Journey: Applied ML Engineer — Week 3
+
+---
+
+Once you create your repo (e.g. `image-classification-api`), initialize it with this structure, `.gitignore`, and `README.md`.
