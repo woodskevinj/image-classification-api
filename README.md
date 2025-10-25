@@ -81,8 +81,7 @@ Add FastAPI prediction endpoint
 
 Dockerize and deploy to ECS
 
-Author: Kevin Woods
-Journey: Applied ML Engineer — Week 3
+Author: Kevin Woods, Applied ML Engineer
 
 ---
 
