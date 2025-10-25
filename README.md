@@ -63,23 +63,23 @@ image-classification-api/
    Use `curl` or Postman to send a POST request to `http://127.0.0.1:8000/predict` with an image file.
    Or curl -X POST -F "file=@test.jpg" http://127.0.0.1:8000/predict
 
-# 🧠 Learning Focus
+## 🧠 Learning Focus
 
 This project emphasizes:
 
-Convolutional Neural Networks (CNNs) for visual pattern extraction
+- Convolutional Neural Networks (CNNs) for visual pattern extraction
 
-Transfer Learning for faster convergence and reduced data needs
+- Transfer Learning for faster convergence and reduced data needs
 
-Model Serving to deploy ML systems as APIs
+- Model Serving to deploy ML systems as APIs
 
-# 📅 Next Steps
+## 📅 Next Steps
 
-Implement model training with a pretrained CNN
+- Implement model training with a pretrained CNN
 
-Add FastAPI prediction endpoint
+- Add FastAPI prediction endpoint
 
-Dockerize and deploy to ECS
+- Dockerize and deploy to ECS
 
 Author: Kevin Woods, Applied ML Engineer
 
