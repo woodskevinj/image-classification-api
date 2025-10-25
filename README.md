@@ -84,5 +84,3 @@ Dockerize and deploy to ECS
 Author: Kevin Woods, Applied ML Engineer
 
 ---
-
-Once you create your repo (e.g. `image-classification-api`), initialize it with this structure, `.gitignore`, and `README.md`.
