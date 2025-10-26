@@ -57,6 +57,7 @@ image-classification-api/
 │
 ├── requirements.txt
 ├── Dockerfile
+├── .dockerignore
 ├── .gitignore
 ├── README.md
 └── ecs-task-def.json # (Optional) AWS ECS task definition
@@ -132,16 +133,65 @@ This project highlights core concepts required of an Applied ML Engineer:
 
 ---
 
+## 🐳 Docker Usage
+
+Build Docker Image
+
+```bash
+docker build -t image-classification-api .
+```
+
+Run Container
+
+```bash
+docker run -p 8000:8000 image-classification-api
+```
+
+Then open:
+
+```arduino
+http://127.0.0.1:8000/health
+```
+
+You should see:
+
+```json
+{
+  "status": "healthy",
+  "model_loaded": true,
+  "device": "cpu",
+  "message": "API and model are ready for inference."
+}
+```
+
+---
+
+## 🧱 Docker Ignore Setup
+
+.dockerignore ensures that unnecessary local files (data, logs, checkpoints, etc.) are excluded from Docker builds for a small and efficient image.
+
+Example included in repo:
+
+```bash
+data/
+logs/
+notebooks/.ipynb_checkpoints/
+venv/
+.git/
+```
+
+---
+
 ## 📊 Current Progress
 
-| Phase                                | Description                               | Status         |
-| ------------------------------------ | ----------------------------------------- | -------------- |
-| **Data Exploration & Preprocessing** | CIFAR-10 dataset setup and visualization  | ✅ Completed   |
-| **Model Training (ResNet18)**        | Fine-tuning pretrained CNNon CIFAR-10     | ✅ Completed   |
-| **API Development**                  | FastAPI app + model inference integration | ✅ Completed   |
-| **Logging & Health Monitoring**      | Logs, /health, /info endpoints added      | ✅ Completed   |
-| **Containerization (Docker)**        | Docker build + run configuration          | 🕓 In progress |
-| **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy              | 🕓 Upcoming    |
+| Phase                                | Description                               | Status       |
+| ------------------------------------ | ----------------------------------------- | ------------ |
+| **Data Exploration & Preprocessing** | CIFAR-10 dataset setup and visualization  | ✅ Completed |
+| **Model Training (ResNet18)**        | Fine-tuning pretrained CNNon CIFAR-10     | ✅ Completed |
+| **API Development**                  | FastAPI app + model inference integration | ✅ Completed |
+| **Logging & Health Monitoring**      | Logs, /health, /info endpoints added      | ✅ Completed |
+| **Containerization (Docker)**        | Docker build + run configuration          | ✅ Completed |
+| **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy              | 🔜 Next      |
 
 ---
 
@@ -155,7 +205,7 @@ This project highlights core concepts required of an Applied ML Engineer:
 
 - [x] Add logging, /logs, /health, and /info endpoints
 
-- [ ] Containerize with Docker
+- [x] Containerize with Docker
 
 - [ ] Deploy to AWS ECS
 
