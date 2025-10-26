@@ -3,8 +3,8 @@
 
 End-to-end deep learning project for image classification — built and deployed using PyTorch and FastAPI.
 
-This project demonstrates the full applied ML lifecycle:
-from data exploration and transfer learning to model serving and containerized deployment on AWS.
+This project demonstrates the full applied ML lifecycle from data exploration and transfer
+learning to model serving and containerized deployment on AWS.
 ---
 
 ## 🧩 Project Overview
@@ -141,10 +141,10 @@ Cloud Deployment (AWS ECS) Push image to ECR and deploy 🕓 Upcoming
 
 👨‍💻 Author
 
-Kevin Woods
-Applied ML Engineer
-🔗 GitHub: woodskevinj
+- Kevin Woods
+- Applied ML Engineer
+- 🔗 GitHub: woodskevinj
 
 🧾 License
 
-This project is open source under the MIT License.
+- This project is open source under the MIT License.
