@@ -7,4 +7,5 @@ uvicorn
 python-multipart
 torch
 torchvision
+tqdm
 jupyter

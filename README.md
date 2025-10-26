@@ -1,28 +1,30 @@
 ---
 # 🖼️ Image Classification API
 
-End-to-end deep learning project for image classification — built and deployed using PyTorch and FastAPI.
+End-to-end deep learning project for **image classification** — built and deployed using **PyTorch** and **FastAPI**.  
 
-This project demonstrates the full applied ML lifecycle from data exploration and transfer
-learning to model serving and containerized deployment on AWS.
+This project demonstrates the **full applied ML lifecycle**:  
+from data exploration and transfer learning to model serving and containerized deployment on AWS.
+
 ---
 
 ## 🧩 Project Overview
 
-This project aims to build a production-style image classification API using a pretrained CNN (e.g., ResNet18).
-You’ll fine-tune the model on a small dataset (such as CIFAR-10), expose a /predict endpoint that accepts image uploads, and return class predictions.
+This project builds a **production-style image classification API** using a **pretrained CNN** (ResNet18).  
+We fine-tune the model on the CIFAR-10 dataset, expose a `/predict` endpoint for inference, and deploy the system using containerized infrastructure.
 
 ---
 
 ## ⚙️ Tech Stack
 
-Component Purpose
-PyTorch Model training, fine-tuning, and inference
-FastAPI RESTful API for serving model predictions
-Docker Containerization for consistent deployment
-Uvicorn ASGI web server for FastAPI
-Jupyter Exploration and model experimentation
-AWS ECS / ECR (Optional) Cloud deployment and hosting
+| Component         | Purpose                                            |
+| ----------------- | -------------------------------------------------- |
+| **PyTorch**       | Model training, fine-tuning, and inference         |
+| **FastAPI**       | RESTful API for serving predictions                |
+| **Docker**        | Containerization for reproducible deployment       |
+| **Uvicorn**       | ASGI web server for FastAPI                        |
+| **Jupyter**       | Interactive notebooks for training and exploration |
+| **AWS ECS / ECR** | (Optional) Cloud hosting and deployment            |
 
 ---
 
@@ -115,7 +117,7 @@ This project highlights core concepts required of an Applied ML Engineer:
 | Phase                                | Description                                 | Status         |
 | ------------------------------------ | ------------------------------------------- | -------------- |
 | **Data Exploration & Preprocessing** | EDA, visualization, normalization constants | ✅ Completed   |
-| **Model Training (ResNet18)**        | Fine-tuning pretrained CNN                  | 🔜 Next        |
+| **Model Training (ResNet18)**        | Fine-tuning pretrained CNN                  | ✅ Completed   |
 | **API Development**                  | FastAPI `/predict` endpoint scaffold        | ✅ Completed   |
 | **Containerization (Docker)**        | Dockerfile and ECS task definition setup    | 🕓 In progress |
 | **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy                | 🕓 Upcoming    |
@@ -128,7 +130,7 @@ This project highlights core concepts required of an Applied ML Engineer:
 
 - [x] Scaffold FastAPI app and /predict route
 
-- [ ] Train and save ResNet18 fine-tuned model
+- [x] Train and save ResNet18 fine-tuned model
 
 - [ ] Integrate trained model into API for inference
 
