@@ -34,8 +34,9 @@ It features endpoints for inference, logs inspection, model health, and metadata
 image-classification-api/
 │
 ├── api/
-│ ├── app.py # FastAPI application with endpoints
-│ └── utils/ # (Optional) helper modules
+│ ├── app.py # Main production-ready API (with endpoints + model)
+│ ├── utils/ # (Optional) helper modules
+| └── local_app.py # Original minimal test/stub version for local dev
 │
 ├── data/
 │ ├── .gitkeep # Keeps data folder tracked (datasets ignored)
