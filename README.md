@@ -110,21 +110,15 @@ This project highlights core concepts required of an Applied ML Engineer:
 
 ---
 
-📊 Current Progress
+## 📊 Current Progress
 
-Phase Description Status
-
----
-
-Data Exploration & Preprocessing EDA, visualization, normalization constants ✅ Completed
-:-----------------------------------------------------------------------------------------------------
-Model Training (ResNet18) Fine-tuning pretrained CNN 🔜 Next
-
-API Development FastAPI /predict endpoint scaffold ✅ Completed
-
-Containerization (Docker) Dockerfile and ECS task definition setup 🕓 In progress
-
-Cloud Deployment (AWS ECS) Push image to ECR and deploy 🕓 Upcoming
+| Phase                                | Description                                 | Status         |
+| ------------------------------------ | ------------------------------------------- | -------------- |
+| **Data Exploration & Preprocessing** | EDA, visualization, normalization constants | ✅ Completed   |
+| **Model Training (ResNet18)**        | Fine-tuning pretrained CNN                  | 🔜 Next        |
+| **API Development**                  | FastAPI `/predict` endpoint scaffold        | ✅ Completed   |
+| **Containerization (Docker)**        | Dockerfile and ECS task definition setup    | 🕓 In progress |
+| **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy                | 🕓 Upcoming    |
 
 ---
 
