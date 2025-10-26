@@ -10,8 +10,8 @@ transfer learning to model serving and containerized deployment on AWS.
 
 ## 🧩 Project Overview
 
-This project builds a **production-style image classification API** using a **pretrained CNN** (ResNet18).  
-We fine-tune the model on the CIFAR-10 dataset, expose a `/predict` endpoint for inference, and deploy the system using containerized infrastructure.
+This API uses a fine-tuned **ResNet18** model (trained on CIFAR-10) to classify images into 10 object categories.  
+It features endpoints for inference, logs inspection, model health, and metadata — designed to mirror a real-world applied ML deployment.
 
 ---
 
@@ -34,28 +34,31 @@ We fine-tune the model on the CIFAR-10 dataset, expose a `/predict` endpoint for
 image-classification-api/
 │
 ├── api/
-│   ├── app.py                  # FastAPI app with /predict endpoint
-│   └── utils/                  # (Optional) preprocessing helpers
+│ ├── app.py # FastAPI application with endpoints
+│ └── utils/ # (Optional) helper modules
 │
 ├── data/
-│   ├── .gitkeep                # Keeps folder tracked (data ignored)
-│   ├── raw/                    # Original datasets (gitignored)
-│   └── processed/              # Preprocessed data (gitignored)
+│ ├── .gitkeep # Keeps data folder tracked (datasets ignored)
+│ ├── raw/ # Local-only original datasets
+│ └── processed/ # Local-only preprocessed data
 │
 ├── models/
-│   ├── .gitkeep                # Placeholder until model saved
-│   └── best_model.pt           # Saved PyTorch weights (local only)
+│ ├── .gitkeep
+│ └── best_model.pt # Fine-tuned ResNet18 weights
 │
 ├── notebooks/
-│   ├── 01_exploration.ipynb    # Dataset exploration + preprocessing
-│   ├── 02_training.ipynb       # Model fine-tuning + evaluation
-│   └── 05_explainability.ipynb # (Optional) SHAP or Grad-CAM analysis
+│ ├── 01_exploration.ipynb # Dataset EDA + preprocessing
+│ ├── 02_training.ipynb # Model training + evaluation
+│ └── 05_explainability.ipynb # (Optional) SHAP / Grad-CAM analysis
 │
-├── requirements.txt            # Python dependencies
-├── Dockerfile                  # Containerization for inference
-├── .gitignore                  # Ignored files (data, models, cache)
-├── README.md                   # Project documentation
-└── ecs-task-def.json           # (Optional) AWS ECS task definition
+├── logs/
+│ └── predictions.log # API prediction logs
+│
+├── requirements.txt
+├── Dockerfile
+├── .gitignore
+├── README.md
+└── ecs-task-def.json # (Optional) AWS ECS task definition
 
 ```
 
@@ -87,10 +90,12 @@ Expected JSON response:
 
 ```json
 {
-  "top1": {
-    "label": "class_name",
-    "score": 0.87
-  }
+  "top1_prediction": { "label": "cat", "confidence": 0.8723 },
+  "top3_predictions": [
+    { "label": "cat", "confidence": 0.8723 },
+    { "label": "dog", "confidence": 0.0671 },
+    { "label": "deer", "confidence": 0.0339 }
+  ]
 }
 ```
 
@@ -102,9 +107,11 @@ This project highlights core concepts required of an Applied ML Engineer:
 
 - 🧩 Convolutional Neural Networks (CNNs) — for visual pattern extraction
 
-- 🔁 Transfer Learning — leveraging pretrained ResNet architectures for small datasets
+- 🔁 Transfer Learning — adapting pretrained ResNet18 to CIFAR-10
 
-- ⚙️ Model Serving — deploying ML systems as APIs for real-time inference
+- 📈 Model Evaluation — training/validation loss tracking
+
+- ⚙️ Model Serving — running inference via FastAPI
 
 - 🐳 Containerization — reproducible, portable environments for deployment
 
@@ -112,31 +119,51 @@ This project highlights core concepts required of an Applied ML Engineer:
 
 ---
 
+## 🌐 API Endpoints
+
+| Endpoint | Method | Description                                                              |
+| -------- | ------ | ------------------------------------------------------------------------ |
+| /predict | POST   | Upload an image for classification (returns top-1 and top-3 predictions) |
+| /logs    | GET    | Retrieve recent prediction logs (?limit=10)                              |
+| /health  | GET    | Quick system health and model readiness check                            |
+| /info    | GET    | View model metadata (architecture, parameters, size, etc.)               |
+| /        | GET    | Welcome message and API overview                                         |
+
+---
+
 ## 📊 Current Progress
 
-| Phase                                | Description                                 | Status         |
-| ------------------------------------ | ------------------------------------------- | -------------- |
-| **Data Exploration & Preprocessing** | EDA, visualization, normalization constants | ✅ Completed   |
-| **Model Training (ResNet18)**        | Fine-tuning pretrained CNN                  | ✅ Completed   |
-| **API Development**                  | FastAPI `/predict` endpoint scaffold        | ✅ Completed   |
-| **Containerization (Docker)**        | Dockerfile and ECS task definition setup    | 🕓 In progress |
-| **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy                | 🕓 Upcoming    |
+| Phase                                | Description                               | Status         |
+| ------------------------------------ | ----------------------------------------- | -------------- |
+| **Data Exploration & Preprocessing** | CIFAR-10 dataset setup and visualization  | ✅ Completed   |
+| **Model Training (ResNet18)**        | Fine-tuning pretrained CNNon CIFAR-10     | ✅ Completed   |
+| **API Development**                  | FastAPI app + model inference integration | ✅ Completed   |
+| **Logging & Health Monitoring**      | Logs, /health, /info endpoints added      | ✅ Completed   |
+| **Containerization (Docker)**        | Docker build + run configuration          | 🕓 In progress |
+| **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy              | 🕓 Upcoming    |
 
 ---
 
 ## 📅 Roadmap
 
-- [x] Build dataset exploration and normalization notebook
+- [x] Complete EDA and preprocessing
 
-- [x] Scaffold FastAPI app and /predict route
+- [x] Train and save fine-tuned ResNet18 model
 
-- [x] Train and save ResNet18 fine-tuned model
+- [x] Integrate inference into FastAPI /predict route
 
-- [ ] Integrate trained model into API for inference
+- [x] Add logging, /logs, /health, and /info endpoints
 
 - [ ] Containerize with Docker
 
 - [ ] Deploy to AWS ECS
+
+---
+
+## 💡 Developer Note
+
+- The file `api/local_app.py` contains the original FastAPI scaffold (used for initial testing).
+- The main production-ready API runs from `api/app.py`.
 
 ---
 
