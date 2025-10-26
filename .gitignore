@@ -38,3 +38,7 @@ logs/
 # ----------------------------
 # Docker
 *.pid
+
+# ----------------------------
+# AWS deployment configuration
+ecs-task-def.json
