@@ -1,11 +1,11 @@
 ---
 # 🖼️ Image Classification API
 
-End-to-end deep learning project for **image classification** — built and deployed using **PyTorch** and **FastAPI**.  
+End-to-end deep learning project for image classification — built and deployed using
+PyTorch and FastAPI.
 
-This project demonstrates the **full applied ML lifecycle**:  
-from data exploration and transfer learning to model serving and containerized deployment on AWS.
-
+This project demonstrates the full applied ML lifecycle from data exploration and
+transfer learning to model serving and containerized deployment on AWS.
 ---
 
 ## 🧩 Project Overview
