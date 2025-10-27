@@ -211,6 +211,15 @@ venv/
 
 ---
 
+## ☁️ Deployment Status
+
+- ✅ Dockerized successfully using a multi-stage build (~1 GB final image)
+- ⚙️ AWS ECR upload attempted — image too large for current bandwidth limits
+- 🧩 Next iteration: optimize dependency footprint (use `torch-cpu`, lighter base image)
+- 🚀 ECS deployment workflow will follow in the next phase
+
+---
+
 ## 💡 Developer Note
 
 - The file `api/local_app.py` contains the original FastAPI scaffold (used for initial testing).

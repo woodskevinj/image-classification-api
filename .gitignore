@@ -38,6 +38,10 @@ logs/
 # ----------------------------
 # Docker
 *.pid
+*.tar
+*.gz
+*.log
+.DS_Store
 
 # ----------------------------
 # AWS deployment configuration

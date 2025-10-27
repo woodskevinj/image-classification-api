@@ -1,11 +1,24 @@
+# ======================================================
+# 📦 Image Classification API — Optimized Requirements
+# Author: Kevin Woods
+# ======================================================
+
+# ---- Core Scientific Stack ----
 numpy
 pandas
 Pillow
 matplotlib
+tqdm
+
+# ---- Model & Training (CPU-only PyTorch build) ----
+torch==2.2.2+cpu
+torchvision==0.17.2+cpu
+--extra-index-url https://download.pytorch.org/whl/cpu
+
+# ---- API & Web Server ----
 fastapi
 uvicorn
 python-multipart
-torch
-torchvision
-tqdm
+
+# ---- Development & Experimentation ----
 jupyter

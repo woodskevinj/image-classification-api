@@ -1,54 +1,33 @@
-# ======================================================
-# 🧱 IMAGE CLASSIFICATION API — DOCKERIGNORE
-# Keeps your Docker builds fast, small, and secure
-# ======================================================
-
-# ---- Python ----
+# Python
 __pycache__/
 *.pyc
 *.pyo
-*.pyd
-*.pdb
-*.log
 
-# ---- Environments ----
+# Environments
 venv/
 .env
-*.env
 
-# ---- Jupyter ----
+# Jupyter
 .ipynb_checkpoints/
-notebooks/*.ipynb_checkpoints/
+notebooks/
+notebooks/.ipynb_checkpoints/
 
-# ---- Data ----
+# Data
 data/
 !data/.gitkeep
 
-# ---- Logs ----
+# Logs
 logs/
 !logs/.gitkeep
 
-# ---- Models ----
+# Models
 models/
 !models/.gitkeep
 !models/best_model.pt
 
-# ---- Git ----
+# Git
 .git/
 .gitignore
 
-# ---- Build Artifacts ----
-build/
-dist/
-*.egg-info/
+# Misc
 .DS_Store
-
-# ---- AWS / Cloud ----
-*.pem
-ecs-task-def.json
-
-# ---- Misc ----
-*.tar
-*.zip
-*.gz
-*.bak
