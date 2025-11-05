@@ -19,6 +19,13 @@ torchvision==0.17.2+cpu
 fastapi
 uvicorn
 python-multipart
+slowapi  # Rate limiting
+aiofiles  # Async file operations
+
+# ---- Testing ----
+pytest
+pytest-asyncio
+httpx  # Async HTTP client for testing FastAPI
 
 # ---- Development & Experimentation ----
 jupyter
