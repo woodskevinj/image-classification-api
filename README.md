@@ -24,6 +24,9 @@ It features endpoints for inference, logs inspection, model health, and metadata
 | **Docker**        | Containerization for reproducible deployment       |
 | **Uvicorn**       | ASGI web server for FastAPI                        |
 | **Jupyter**       | Interactive notebooks for training and exploration |
+| **Pytest**        | Unit testing framework for API validation          |
+| **slowapi**       | Rate limiting for API security                     |
+| **Pydantic**      | Data validation and settings management            |
 | **AWS ECS / ECR** | (Optional) Cloud hosting and deployment            |
 
 ---
@@ -37,6 +40,10 @@ image-classification-api/
 │ ├── app.py # Main production-ready API (with endpoints + model)
 │ ├── utils/ # (Optional) helper modules
 | └── local_app.py # Original minimal test/stub version for local dev
+│
+├── tests/
+│ ├── __init__.py
+│ └── test_api_security.py # Comprehensive security and functionality tests
 │
 ├── data/
 │ ├── .gitkeep # Keeps data folder tracked (datasets ignored)
@@ -56,6 +63,7 @@ image-classification-api/
 │ └── predictions.log # API prediction logs
 │
 ├── requirements.txt
+├── pytest.ini # Pytest configuration
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitignore
@@ -103,6 +111,80 @@ Expected JSON response:
 
 ---
 
+## 🔒 Security Features
+
+This API implements production-grade security measures:
+
+### File Validation
+- **File size limits**: Maximum 10 MB per upload to prevent resource exhaustion
+- **MIME type validation**: Uses `imghdr` to verify actual file content (not just extensions)
+- **Decompression bomb prevention**: PIL validation to prevent malicious large images
+- **Empty file rejection**: Validates all uploads have content
+
+### Rate Limiting
+- **IP-based throttling**: 30 requests/minute for `/predict`, 10 requests/minute for `/logs`
+- **Automatic 429 responses**: Returns clear error messages when limits are exceeded
+- **Configurable limits**: Easy to adjust per endpoint based on requirements
+
+### Input Validation
+- **Pydantic models**: Type-safe request/response validation
+- **Query parameter validation**: `/logs?limit` enforces 1-100 range
+- **Confidence score validation**: Ensures 0.0 ≤ confidence ≤ 1.0
+- **Auto-generated OpenAPI docs**: Interactive API documentation with validated schemas
+
+### CORS Configuration
+- **Cross-origin support**: Enables browser-based clients
+- **Configurable origins**: Currently set to `*` for development (customize for production)
+
+---
+
+## 🧪 Unit Testing
+
+Comprehensive test suite with **22 passing tests** covering all security features and API functionality.
+
+### Test Coverage
+
+```bash
+# Run all tests
+pytest tests/test_api_security.py -v
+
+# Run specific test categories
+pytest tests/test_api_security.py::TestFileSizeValidation -v
+pytest tests/test_api_security.py::TestRateLimiting -v
+
+# Exclude slow tests
+pytest tests/test_api_security.py -v -m "not slow"
+```
+
+### Test Categories
+
+| Category | Tests | Description |
+|----------|-------|-------------|
+| **File Size Validation** | 3 | Valid files, empty files, oversized files (>10 MB) |
+| **MIME Type Validation** | 3 | Valid image formats, invalid file types, PDF rejection |
+| **Decompression Bombs** | 1 | Protection against malicious large images |
+| **Rate Limiting** | 2 | Enforcement on `/predict` and `/logs` endpoints |
+| **Pydantic Validation** | 2 | Query parameter ranges and type checking |
+| **CORS Configuration** | 2 | Middleware setup and preflight requests |
+| **API Endpoints** | 5 | All endpoints (root, health, info, logs, predict) |
+| **Response Models** | 2 | Pydantic response structure validation |
+| **Error Handling** | 2 | Missing parameters and corrupted files |
+
+### Example Test Output
+
+```
+======================= 22 passed, 1 deselected in 3.74s =======================
+```
+
+### Testing Best Practices
+
+- **Isolated tests**: Each test is independent and can run in any order
+- **Fixtures**: Reusable test clients with and without rate limiting
+- **Edge cases**: Tests cover normal operation, boundary conditions, and error states
+- **Fast execution**: Non-slow tests complete in under 4 seconds
+
+---
+
 ## 🧠 Learning Focus
 
 This project highlights core concepts required of an Applied ML Engineer:
@@ -114,6 +196,10 @@ This project highlights core concepts required of an Applied ML Engineer:
 - 📈 Model Evaluation — training/validation loss tracking
 
 - ⚙️ Model Serving — running inference via FastAPI
+
+- 🔒 API Security — file validation, rate limiting, input validation
+
+- 🧪 Unit Testing — comprehensive test coverage with pytest
 
 - 🐳 Containerization — reproducible, portable environments for deployment
 
@@ -187,8 +273,10 @@ venv/
 | Phase                                | Description                               | Status       |
 | ------------------------------------ | ----------------------------------------- | ------------ |
 | **Data Exploration & Preprocessing** | CIFAR-10 dataset setup and visualization  | ✅ Completed |
-| **Model Training (ResNet18)**        | Fine-tuning pretrained CNNon CIFAR-10     | ✅ Completed |
+| **Model Training (ResNet18)**        | Fine-tuning pretrained CNN on CIFAR-10    | ✅ Completed |
 | **API Development**                  | FastAPI app + model inference integration | ✅ Completed |
+| **Security Features**                | File validation, rate limiting, CORS      | ✅ Completed |
+| **Unit Testing**                     | Comprehensive test suite (22 tests)       | ✅ Completed |
 | **Logging & Health Monitoring**      | Logs, /health, /info endpoints added      | ✅ Completed |
 | **Containerization (Docker)**        | Docker build + run configuration          | ✅ Completed |
 | **Cloud Deployment (AWS ECS)**       | Push image to ECR and deploy              | 🔜 Next      |
@@ -204,6 +292,10 @@ venv/
 - [x] Integrate inference into FastAPI /predict route
 
 - [x] Add logging, /logs, /health, and /info endpoints
+
+- [x] Implement security features (file validation, rate limiting, input validation)
+
+- [x] Build comprehensive unit test suite with pytest
 
 - [x] Containerize with Docker
 
